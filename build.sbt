@@ -85,7 +85,10 @@ val `collections-contrib` =
   crossProj("collections-contrib", file("collections-contrib"))
     .dependsOn(collections)
     .settings(
-      name := "collections-contrib"
+      name := "collections-contrib",
+      libraryDependencies ++= Seq(
+        ("org.scalacheck" %% "scalacheck" % "1.13.5" % Test).withDottyCompat()
+      )
     )
 
 val `collections-contrib-jvm` = `collections-contrib`.jvm

@@ -18,5 +18,4 @@ package object decorators {
 
   implicit def MutableMapDecorator[K, V](map: mutable.Map[K, V]): MutableMapDecorator[K, V] =
     new MutableMapDecorator[K, V](map)
-
 }

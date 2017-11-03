@@ -2,12 +2,11 @@ package strawman.collection
 
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen.listOf
-
-import scala.collection.immutable.{List => ScalaList}
-import scala.collection.immutable.{Vector => ScalaVector}
-import strawman.collection.immutable.{List, Vector}
 import org.scalacheck.{Arbitrary, Gen}
+import strawman.collection.immutable.{List, Vector}
+import scala.collection.immutable.{List => ScalaList, Vector => ScalaVector}
 
+// TODO remove once scalacheck subproject is cross compiled
 object Generators {
 
   implicit def arbitraryVector[A](implicit arbitraryOldVector: Arbitrary[ScalaVector[A]]): Arbitrary[Vector[A]] =
