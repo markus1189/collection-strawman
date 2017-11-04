@@ -18,4 +18,7 @@ package object decorators {
 
   implicit def MutableMapDecorator[K, V](map: mutable.Map[K, V]): MutableMapDecorator[K, V] =
     new MutableMapDecorator[K, V](map)
+
+  implicit def IterableDecorator[A, CC[X] <: IterableOps[X, CC, _]](it: CC[A]): IterableDecorator[A, CC] =
+    new IterableDecorator[A, CC](it)
 }

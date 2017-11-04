@@ -5,6 +5,7 @@ import org.scalacheck.Gen.listOf
 import org.scalacheck.{Arbitrary, Gen}
 import strawman.collection.immutable.{List, Vector}
 import scala.collection.immutable.{List => ScalaList, Vector => ScalaVector}
+import scala.collection.{Iterator => ScalaIterator}
 
 // TODO remove once scalacheck subproject is cross compiled
 object Generators {
@@ -28,5 +29,9 @@ object Generators {
     for {
       elements <- listOf(arbitrary[A])
     } yield mutable.TreeSet(elements: _*)
+
   implicit def arbTreeSet[A : Arbitrary : Ordering]: Arbitrary[mutable.TreeSet[A]] = Arbitrary(genTreeSet)
+
+  implicit def arbIterator[A](implicit arbitraryOldList: Arbitrary[ScalaList[A]]): Arbitrary[Iterator[A]] =
+    Arbitrary(arbitraryOldList.arbitrary.map(_.iterator.toStrawman))
 }

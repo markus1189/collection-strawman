@@ -60,5 +60,4 @@ class MapDecoratorTest {
       Assert.assertEquals(expected, sortedMap1.fullOuterJoin(sortedMap2))
     }
   }
-
 }
